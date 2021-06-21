@@ -2,7 +2,7 @@ import React from 'react'
 import './Login.css'
 import { useState } from 'react';
 
-function Login({ isLoginPage, toggle }) {
+function Login({ isLoginPage }) {
 
     const [commonText] = useState(
         {
@@ -54,8 +54,8 @@ function Login({ isLoginPage, toggle }) {
             <div className="sign-up-wrapper background-white">
                 <div className="sign-up-text">
                     <p className="background-white"> {isLoginPage ? commonText.doNotHaveAccount : commonText.haveAccount}
-                        <button className="sign-up-link background-white" href="#" onClick={toggle} > 
-                        {isLoginPage ? commonText.signUp : commonText.logIn}</button></p>
+                        <a className="sign-up-link background-white" href= { isLoginPage ? "/sign-in" : "/login" } > 
+                        {isLoginPage ? commonText.signUp : commonText.logIn}</a></p>
                 </div>
             </div>
         </div>
