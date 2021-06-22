@@ -1,9 +1,10 @@
 import React from 'react'
-import './Login.css'
+import './Signup.css'
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
-function Login({ isLoginPage }) {
-
+function Signup() {
+    const isLoginPage = false
     const [commonText] = useState(
         {
             password: "Password",
@@ -54,12 +55,12 @@ function Login({ isLoginPage }) {
             <div className="sign-up-wrapper background-white">
                 <div className="sign-up-text">
                     <p className="background-white"> {isLoginPage ? commonText.doNotHaveAccount : commonText.haveAccount}
-                        <a className="sign-up-link background-white" href= { isLoginPage ? "/sign-in" : "/login" } > 
-                        {isLoginPage ? commonText.signUp : commonText.logIn}</a></p>
+                        <Link className="sign-up-link background-white" to="/login">Log in</Link>
+                    </p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Login
+export default Signup

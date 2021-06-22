@@ -1,26 +1,30 @@
 import './App.css';
-import Login from './Components/Login';
-import { Router, Route, Redirect } from 'react-router';
-import { createBrowserHistory } from 'history';
+import Login from './Components/Login/Login';
+import Signup from './Components/Signup/Signup';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 
 function App() {
 
-  const history = createBrowserHistory();
+  // const history = createBrowserHistory();
 
   return (
-    <Router  history={history}>
-      <Route 
-          exact path="/" 
-          render = { () => { return (<Redirect to="/login" /> ) }}/>
-      <Route 
-          key="login" 
-          exact path="/login" 
-          children={<Login isLoginPage={true}/>}/>
-      <Route 
-          key="sign-in" 
-          exact path="/sign-in" 
-          children={<Login isLoginPage={false}/>}/>
+    <Router  >
+      <Switch>
+          <Route exact path="/">
+            <Login /> 
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+        </Switch>
     </Router>
   );
 }
