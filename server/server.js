@@ -11,7 +11,7 @@ const port = process.env.PORT || 5001;
 //DB config
 database();
 
-console.log(process.env);
+// console.log(process.env);
 
 //middlewares
 app.use(express.json());
