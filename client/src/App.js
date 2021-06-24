@@ -1,30 +1,22 @@
-import './App.css';
-import Login from './Components/Login/Login';
-import Signup from './Components/Signup/Signup';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-
+import "./App.css";
+import { Login } from "./Components/Login/Login";
+import Signup from "./Components/Signup/Signup";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-
-  // const history = createBrowserHistory();
-
   return (
-    <Router  >
+    <Router>
       <Switch>
-          <Route exact path="/">
-            <Login /> 
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-        </Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
+      </Switch>
     </Router>
   );
 }
