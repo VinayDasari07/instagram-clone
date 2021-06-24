@@ -1,27 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import localization from "../localization.json";
 
-export const Login = () => {
+export const Login = ({ checkLogin }) => {
   const loginLocalization = localization.LoginComponent;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <div className="container-fluid">
       <div className="login-wrapper">
         <div className="logo-text">{loginLocalization.instagram}</div>
-        <div className="login-form">
+        <form
+          className="login-form"
+          onSubmit={(e) => checkLogin(e, email, password)}
+        >
           <input
             type="text"
             className="form-control font-size-login"
             id="staticEmail"
             placeholder={loginLocalization.userName}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             className="form-control font-size-login"
             id="inputPassword"
             placeholder={loginLocalization.password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <button
             type="submit"
@@ -29,7 +36,7 @@ export const Login = () => {
           >
             {loginLocalization.logInText}
           </button>
-        </div>
+        </form>
       </div>
       <div className="sign-up-wrapper background-white">
         <div className="sign-up-text">
@@ -43,4 +50,4 @@ export const Login = () => {
       </div>
     </div>
   );
-}
+};
