@@ -2,11 +2,36 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import localization from "../localization.json";
+import axios from "axios";
+import axiosConfig from "../../config-files/axios.config.json";
+import { Redirect } from "react-router-dom";
 
-export const Login = ({ checkLogin }) => {
+export const Login = () => {
   const loginLocalization = localization.LoginComponent;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isUserAdded, setIsUserAdded] = useState(false);
+
+  const checkLogin = (e, email, password) => {
+    e.preventDefault();
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
+    axios
+      .post("/api/login", { email, password }, axiosConfig)
+      .then((res) => {
+        console.log(res);
+        setIsUserAdded(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  if (isUserAdded) {
+    return <Redirect to="/user-feed"></Redirect>;
+  }
 
   return (
     <div className="container-fluid">

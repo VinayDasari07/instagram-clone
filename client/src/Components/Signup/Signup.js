@@ -3,8 +3,10 @@ import "./Signup.css";
 import { Link } from "react-router-dom";
 import localization from "../localization.json";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
+import axiosConfig from "../../config-files/axios.config.json";
 
-function Signup({ userList }) {
+function Signup() {
   const signUpLocalization = localization.SignUpComponent;
   const [isUserAdded, setIsUserAdded] = useState(false);
   const [email, setEmail] = useState("");
@@ -12,13 +14,10 @@ function Signup({ userList }) {
   const [userName, setUserName] = useState("");
   const [name, setName] = useState("");
 
-  const addUser = (e, email, name, userName, password) => {
+  const addUser = (e) => {
     e.preventDefault();
-    const user = userList.find(
-      (obj) => obj.email === email || obj.userName === email
-    );
-    if (user) {
-      alert("User name or email already exists");
+    if (!email || !password || !userName || !name) {
+      alert("Please enter all details");
       return;
     }
     const newUser = {
@@ -27,9 +26,15 @@ function Signup({ userList }) {
       name,
       email,
     };
-    userList = [...userList, newUser];
-    console.log(userList);
-    setIsUserAdded(true);
+    axios
+      .post("/api/signup", newUser, axiosConfig)
+      .then((res) => {
+        console.log(res);
+        setIsUserAdded(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   if (isUserAdded) {
@@ -43,10 +48,7 @@ function Signup({ userList }) {
         <div className="sign-up-info-text background-white">
           {signUpLocalization.signUpInfoText}
         </div>
-        <form
-          className="login-form"
-          onSubmit={(e) => addUser(e, userName, password, name, email)}
-        >
+        <form className="login-form" onSubmit={(e) => addUser(e)}>
           <input
             type="text"
             className="form-control font-size-login"

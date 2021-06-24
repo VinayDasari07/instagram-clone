@@ -7,7 +7,7 @@ const signupController = async (req, res) => {
   if (!userName || !email || !password || !name) {
     return res.status(422).json({ error: "Please add all the details. " });
   }
-  await UserDetailModel.findOne({
+  UserDetailModel.findOne({
     $or: [{ EmailId: email }, { UserName: userName }],
   })
     .then((user) => {
@@ -38,13 +38,14 @@ const signupController = async (req, res) => {
 };
 
 const loginController = async (req, res) => {
+  // await UserDetailModel.find().then((user) => {
+  //   console.log("user =>", user);
+  // })
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(422).json({ error: "Please add all the details. " });
   }
-  await UserDetailModel.findOne({
-    $or: [{ EmailId: email }, { UserName: userName }],
-  })
+  UserDetailModel.findOne({ EmailId: email })
     .then((user) => {
       if (!user) {
         return res

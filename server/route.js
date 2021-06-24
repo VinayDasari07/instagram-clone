@@ -3,7 +3,6 @@ import {
   signupController,
   loginController,
 } from "./controllers/userController.js";
-// import { loginController } from "./controllers/loginController.js"
 
 const router = express.Router();
 
@@ -15,6 +14,6 @@ router.get("/", function (req, res) {
 router.post("/signup", signupController);
 
 // define the login route
-router.get("/login/:userId", loginController);
+router.post("/login", loginController);
 
 export { router };
