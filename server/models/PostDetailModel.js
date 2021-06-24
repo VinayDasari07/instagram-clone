@@ -3,8 +3,8 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const PostSchema = new mongoose.Schema({
   UserId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: ObjectId,
+    ref: "UserDetail",
   },
   ImageUrl: {
     type: String,
@@ -20,14 +20,19 @@ const PostSchema = new mongoose.Schema({
   },
   comment: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment",
+      User: {
+        type: ObjectId,
+        ref: "UserDetail",
+      },
+      commentText: {
+        type: String
+      }
     },
   ],
   like: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Like",
+      type: ObjectId,
+      ref: "UserDetail",
     },
   ],
 });

@@ -15,11 +15,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  FirstName: {
-    type: String,
-    required: true,
-  },
-  LastName: {
+  Name: {
     type: String,
     required: true,
   },
@@ -31,6 +27,18 @@ const UserSchema = new mongoose.Schema({
     default:
       "https://brighterwriting.com/wp-content/uploads/icon-user-default-420x420.png",
   },
+  Followers: [
+    {
+      type: ObjectId,
+      ref: "UserDetail",
+    },
+  ],
+  Following: [
+    {
+      type: ObjectId,
+      ref: "UserDetail",
+    },
+  ],
 });
 
 const UserDetailModel = mongoose.model("UserDetail", UserSchema);
