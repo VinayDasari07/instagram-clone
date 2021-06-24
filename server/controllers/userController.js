@@ -75,4 +75,8 @@ const loginController = async (req, res) => {
     });
 };
 
-export { signupController, loginController };
+const currentUser = async (req, res) => {
+  res.status(200).json(req.user);
+};
+
+export { signupController, loginController, currentUser };

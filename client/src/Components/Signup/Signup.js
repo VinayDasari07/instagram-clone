@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import localization from "../localization.json";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import axiosConfig from "../../config-files/axios.config.json";
+import { axiosConfig } from "..//..//config-files/axios.config.js";
 
-function Signup() {
+function Signup({ user }) {
   const signUpLocalization = localization.SignUpComponent;
   const [isUserAdded, setIsUserAdded] = useState(false);
   const [email, setEmail] = useState("");
@@ -26,6 +26,7 @@ function Signup() {
       name,
       email,
     };
+
     axios
       .post("/api/signup", newUser, axiosConfig)
       .then((res) => {
@@ -39,6 +40,9 @@ function Signup() {
 
   if (isUserAdded) {
     return <Redirect to="/login"></Redirect>;
+  }
+  if (user) {
+    return <Redirect to="/user-feed"></Redirect>;
   }
 
   return (

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import localization from "../localization.json";
-import axios from "axios";
-import axiosConfig from "../../config-files/axios.config.json";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
+import { axiosConfig } from "..//..//config-files/axios.config.js";
 
-export const Login = () => {
+export const Login = ({ user }) => {
   const loginLocalization = localization.LoginComponent;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ export const Login = () => {
     axios
       .post("/api/login", { email, password }, axiosConfig)
       .then((res) => {
-        console.log(res);
+        localStorage.setItem("token", res.data.token);
         setIsUserAdded(true);
       })
       .catch((err) => {
@@ -29,7 +29,7 @@ export const Login = () => {
       });
   };
 
-  if (isUserAdded) {
+  if (isUserAdded || user) {
     return <Redirect to="/user-feed"></Redirect>;
   }
 

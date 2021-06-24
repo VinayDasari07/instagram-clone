@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { UserDetailModel } from "../models/UserDetailModel.js";
 import { JWT_SECRET } from '../constants/constants.js'
 
-export const loginCheck = (res, req, next) => {
+export const loginCheck = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({ error: "you must be logged in" });
@@ -19,4 +19,5 @@ export const loginCheck = (res, req, next) => {
       next();
     });
   });
+  // next();
 };

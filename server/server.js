@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import { router } from "./route.js";
-import { UserDetailModel } from "./models/UserDetailModel.js";
 import { database } from "./databaseConnection.js";
 
 //app config
