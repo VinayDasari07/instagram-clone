@@ -1,0 +1,23 @@
+{
+    "LoginComponent": {
+        "userName": "Phone number, username or email",
+        "password": "Password",
+        "logInText": "Log In",
+        "signUpText": "Sign Up",
+        "doNotHaveAccount": "Don't have an account?",
+        "forgotPassword": "Forgot password?",
+        "instagram": "Instagram"
+    },
+    "SignUpComponent": {
+        "email": "Mobile number or Email",
+        "password": "Password",
+        "logInText": "Log In",
+        "signUpText": "Sign Up",
+        "fullName": "Full Name",
+        "userName": "UserName",
+        "policy": "By signing up, you agree to our Terms , Data Policy and Cookies Policy.",
+        "instagram": "Instagram",
+        "haveAccount": "Have an account?",
+        "signUpInfoText": "Sign up to see photos and videos from your friends."
+    }
+}

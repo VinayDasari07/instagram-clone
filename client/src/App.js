@@ -1,31 +1,43 @@
-import './App.css';
-import Login from './Components/Login/Login';
-import Signup from './Components/Signup/Signup';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-
+import "./App.css";
+import { Login } from "./Components/Login/Login";
+import { Feed } from "./Components/Feed/Feed";
+import { Navbar } from "./Components/Navbar/Navbar";
+import Signup from "./Components/Signup/Signup";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { axiosConfig } from ".//config-files/axios.config.js";
 
 function App() {
-
-  // const history = createBrowserHistory();
-
+  const [user, setUser] = useState(null);
+  if (!user) {
+    axios
+      .get("/api/get-logged-in-user", axiosConfig)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
-    <Router  >
-      <Switch>
+    <>
+      <Navbar user={user}></Navbar>
+      <Router>
+        <Switch>
           <Route exact path="/">
-            <Login /> 
+            <Login user={user} />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login user={user} />
           </Route>
           <Route path="/signup">
-            <Signup />
+            <Signup user={user} />
+          </Route>
+          <Route path="/user-feed">
+            <Feed user={user} />
           </Route>
         </Switch>
-    </Router>
+      </Router>
+    </>
   );
 }
 

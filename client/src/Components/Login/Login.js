@@ -1,68 +1,78 @@
-import React from 'react'
-import './Login.css'
-import { useState } from 'react';
+import React, { useState } from "react";
+import "./Login.css";
 import { Link } from "react-router-dom";
+import localization from "../localization.json";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
+import { axiosConfig } from "..//..//config-files/axios.config.js";
 
-function Login() {
-    const isLoginPage = true
-    
-    
-    const [commonText] = useState(
-        {
-            password: "Password",
-            email: "Mobile number or Email",
-            loginUserName: "Phone number, username or email",
-            fullName: "Full Name",
-            userName: "UserName",
-            policy: "By signing up, you agree to our Terms , Data Policy and Cookies Policy.",
-            instagram: "Instagram",
-            logIn: "Log In",
-            signUp: "Sign Up",
-            haveAccount: "Have an account?",
-            doNotHaveAccount: "Don't have an account?",
-            forgotPassword: "Forgot password?",
-            signUpInfoText: "Sign up to see photos and videos from your friends."
-        })
+export const Login = ({ user }) => {
+  const loginLocalization = localization.LoginComponent;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isUserAdded, setIsUserAdded] = useState(false);
 
-    return (
-        <div className="container-fluid">
-            <div className="login-wrapper">
-                <div className="logo-text">{commonText.instagram}</div>
-                {!isLoginPage ?
-                    (<div className="sign-up-info-text background-white">
-                        {commonText.signUpInfoText}
-                    </div>) : ""
-                }
-                <div className="login-form">
-                    <input type="text" className="form-control font-size-login" id="staticEmail"
-                        placeholder={isLoginPage ? commonText.loginUserName : commonText.email} />
-                    {
-                        isLoginPage ? "" :
-                            (<>
-                                <input type="text" className="form-control font-size-login" id="staticFullName"
-                                    placeholder={commonText.fullName} />
-                                <input type="text" className="form-control font-size-login" id="staticUserName"
-                                    placeholder={commonText.userName} />
-                            </>)
-                    }
-                    <input type="password" className="form-control font-size-login" id="inputPassword" placeholder={commonText.password} />
-                    <button type="submit" className="form-control btn btn-primary login-btn" >
-                        {isLoginPage ? commonText.logIn : commonText.signUp}</button>
-                </div>
-                {isLoginPage ?
-                    <button className="forgot-password background-white" href="#" >{commonText.forgotPassword}</button> :
-                    <span className="policy-text background-white">{commonText.policy}</span>
-                }
-            </div>
-            <div className="sign-up-wrapper background-white">
-            <div className="sign-up-text">
-                    <p className="background-white"> {isLoginPage ? commonText.doNotHaveAccount : commonText.haveAccount}
-                    <Link className="sign-up-link background-white" to="/signup">Sign up</Link>
-                    </p>
-                </div>
-            </div>
+  const checkLogin = (e, email, password) => {
+    e.preventDefault();
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
+    axios
+      .post("/api/login", { email, password }, axiosConfig)
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        setIsUserAdded(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  if (isUserAdded || user) {
+    return <Redirect to="/user-feed"></Redirect>;
+  }
+
+  return (
+    <div className="container-fluid">
+      <div className="login-wrapper">
+        <div className="logo-text">{loginLocalization.instagram}</div>
+        <form
+          className="login-form"
+          onSubmit={(e) => checkLogin(e, email, password)}
+        >
+          <input
+            type="text"
+            className="form-control font-size-login"
+            id="staticEmail"
+            placeholder={loginLocalization.userName}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            className="form-control font-size-login"
+            id="inputPassword"
+            placeholder={loginLocalization.password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="form-control btn btn-primary login-btn"
+          >
+            {loginLocalization.logInText}
+          </button>
+        </form>
+      </div>
+      <div className="sign-up-wrapper background-white">
+        <div className="sign-up-text">
+          <p className="background-white">
+            {loginLocalization.doNotHaveAccount}
+            <Link className="sign-up-link background-white" to="/signup">
+              {loginLocalization.signUpText}
+            </Link>
+          </p>
         </div>
-    )
-}
-
-export default Login
+      </div>
+    </div>
+  );
+};
