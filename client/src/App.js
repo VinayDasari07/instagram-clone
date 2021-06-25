@@ -1,6 +1,7 @@
 import "./App.css";
 import { Login } from "./Components/Login/Login";
 import { Feed } from "./Components/Feed/Feed";
+import { Navbar } from "./Components/Navbar/Navbar";
 import Signup from "./Components/Signup/Signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
@@ -9,33 +10,34 @@ import { axiosConfig } from ".//config-files/axios.config.js";
 
 function App() {
   const [user, setUser] = useState(null);
-
-  let token = localStorage.getItem("token");
-  if (token && !user) {
+  if (!user) {
     axios
       .get("/api/get-logged-in-user", axiosConfig)
       .then((res) => {
-        setUser(res.data)
+        setUser(res.data);
       })
       .catch((err) => console.log(err));
   }
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Login user={user} />
-        </Route>
-        <Route path="/login">
-          <Login user={user} />
-        </Route>
-        <Route path="/signup">
-          <Signup user={user} />
-        </Route>
-        <Route path="/user-feed">
-          <Feed user={user} />
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <Navbar user={user}></Navbar>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Login user={user} />
+          </Route>
+          <Route path="/login">
+            <Login user={user} />
+          </Route>
+          <Route path="/signup">
+            <Signup user={user} />
+          </Route>
+          <Route path="/user-feed">
+            <Feed user={user} />
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
