@@ -88,4 +88,15 @@ export const UserFollowerSectionText = styled.p`
 
 export const UserBioSection = styled.div`
   display: flex;
+  width: auto;
+  height: 100%;
+`;
+
+export const PostContainer = styled.div`
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(219, 219, 219, 1);
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 28px;
 `;

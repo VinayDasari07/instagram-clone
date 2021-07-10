@@ -1,6 +1,6 @@
 import "./App.css";
 import { Login } from "./Components/Login/Login";
-import { Feed } from "./Components/Feed/Feed";
+// import { Feed } from "./Components/Feed/Feed";
 import { Navbar } from "./Components/Navbar/Navbar";
 import Signup from "./Components/Signup/Signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";

@@ -1,10 +1,51 @@
 import React from "react";
 import * as style from "./UserProfile.styles";
 import localization from "../localization.json";
+import Post from "./Post/Post";
 
 function UserProfile({ user }) {
   const userProfileLocalization = localization.UserProfileComponent;
-  console.log(user);
+  // console.log(user);
+  let postList = [
+    {
+      ImageUrl: "https://source.unsplash.com/user/erondu/282x282",
+      caption: "Abc",
+      comment: [{ user: "abc", commentText: "text" }],
+      like: [{ user: "abc" }, { user: "abc" }],
+      postedOn: "20-7-2021",
+    },
+    {
+      ImageUrl: "https://source.unsplash.com/user/erondu/282x282",
+      caption: "Abc",
+      comment: [],
+      like: [{ user: "abc" }],
+      postedOn: "20-7-2021",
+    },
+    {
+      ImageUrl: "https://source.unsplash.com/user/erondu/282x282",
+      caption: "Abc",
+      comment: [{ user: "abc", commentText: "text" }],
+      like: [{ user: "abc" }],
+      postedOn: "20-7-2021",
+    },
+    {
+      ImageUrl: "https://source.unsplash.com/user/erondu/282x282",
+      caption: "Abc",
+      comment: [{ user: "abc", commentText: "text" }],
+      like: [{ user: "abc" }],
+      postedOn: "20-7-2021",
+    },
+    {
+      ImageUrl: "https://source.unsplash.com/user/erondu/282x282",
+      caption: "Abc",
+      comment: [
+        { user: "abc", commentText: "text" },
+        { user: "abc", commentText: "text" },
+      ],
+      like: [{ user: "abc" }],
+      postedOn: "20-7-2021",
+    },
+  ];
   return (
     <div>
       <style.ProfileContent>
@@ -57,6 +98,11 @@ function UserProfile({ user }) {
             </style.UserBioSection>
           </style.UserDataContainer>
         </style.HeaderContent>
+        <style.PostContainer>
+          {postList.map((post) => {
+            return <Post post={post} />;
+          })}
+        </style.PostContainer>
       </style.ProfileContent>
     </div>
   );

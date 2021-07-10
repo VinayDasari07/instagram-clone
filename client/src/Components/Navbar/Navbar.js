@@ -13,7 +13,6 @@ import {
   HomeBTN,
   ProfileImage,
   ProfileImageContainer,
-  LogOutSpan,
 } from "./Navbar.style";
 
 export const Navbar = ({ user }) => {
