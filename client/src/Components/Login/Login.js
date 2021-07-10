@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { axiosConfig } from "..//..//config-files/axios.config.js";
 
-export const Login = ({ user }) => {
+export const Login = ({ user, setUser }) => {
   const loginLocalization = localization.LoginComponent;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +22,7 @@ export const Login = ({ user }) => {
       .post("/api/login", { email, password }, axiosConfig)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        setUser(res.data.user);
         setIsUserAdded(true);
       })
       .catch((err) => {

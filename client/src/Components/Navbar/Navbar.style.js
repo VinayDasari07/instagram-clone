@@ -11,7 +11,7 @@ export const Nav = styled.nav`
   margin: 0;
   position: relative;
   align-items: stretch;
-  border: 0 solid #000;
+  border: 2px solid #e6e6e6;
   box-sizing: border-box;
   flex-basis: 55px;
 `;
@@ -24,7 +24,7 @@ export const NavContent = styled.div`
   flex-direction: row;
   flex-shrink: 0;
   padding: 0 20px;
-  margin: 0;
+  margin: 0 auto;
   align-items: center;
   max-width: 970px;
   height: 54px;
@@ -33,6 +33,7 @@ export const NavContent = styled.div`
 export const LogoText = styled.h2`
   flex: 1 9999 0%;
   min-width: 40px;
+  font-family: 'Lobster Two', cursive;
 `;
 
 export const LinkToHome = styled.a`
