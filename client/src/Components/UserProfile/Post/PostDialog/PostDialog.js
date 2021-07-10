@@ -3,16 +3,18 @@ import * as style from "./PostDialog.styles";
 
 const PostDialog = ({ post, user, setIsDialogOpen }) => {
   console.log(post);
+
+  const boxClickEvent = (e) => {
+    setIsDialogOpen();
+  };
+  const contentClickEvent = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <style.DialogBoxContainer>
-      <style.CrossButton
-        onClick={() => {
-          setIsDialogOpen();
-        }}
-      >
-        X
-      </style.CrossButton>
-      <style.DialogContents>
+    <style.DialogBoxContainer onClick={boxClickEvent}>
+      <style.CrossButton>X</style.CrossButton>
+      <style.DialogContents onClick={contentClickEvent}>
         <style.DialogContentPostImage
           src={post.ImageUrl}
         ></style.DialogContentPostImage>
