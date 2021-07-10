@@ -11,7 +11,7 @@ function UserProfile({ user }) {
       ImageUrl: "https://source.unsplash.com/user/erondu/282x282",
       caption: "Abc",
       comment: [{ user: "abc", commentText: "text" }],
-      like: [{ user: "abc" }, { user: "abc" }],
+      like: [{ user: "abc" }, { user: "abc" }, { user: "abc" }],
       postedOn: "20-7-2021",
     },
     {
@@ -100,7 +100,7 @@ function UserProfile({ user }) {
         </style.HeaderContent>
         <style.PostContainer>
           {postList.map((post) => {
-            return <Post post={post} />;
+            return <Post post={post} user={user} />;
           })}
         </style.PostContainer>
       </style.ProfileContent>
