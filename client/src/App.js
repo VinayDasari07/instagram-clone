@@ -8,23 +8,21 @@ import {
   Switch,
   Route,
   useHistory,
+  Redirect,
 } from "react-router-dom";
 import {
-  useState,
   createContext,
-  useContext,
   useEffect,
-  useReducer,
 } from "react";
 import axios from "axios";
 import { axiosConfig } from ".//config-files/axios.config.js";
 import UserProfile from "./Components/UserProfile/UserProfile";
-import { reducer, initialState } from "./reducers/userReducer";
-
+import { useSelector, useDispatch } from "react-redux";
 export const UserContext = createContext();
 function Routing() {
   const history = useHistory();
-  const { state, dispatch } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
   useEffect(() => {
     axios
       .get("/api/get-logged-in-user", axiosConfig)
@@ -34,17 +32,17 @@ function Routing() {
       .catch((err) => {
         history.push("/login");
       });
-  }, []);
+  }, [dispatch, history]);
 
   return (
-    // <UserContext.Provider value={{state, dispatch}}>
-    <Router>
+    <>
+        {user ? <Navbar /> : '' }
       <Switch>
         <Route exact path="/">
-          <Feed />
+        {user ? <Feed /> : <Redirect to="/login" /> }
         </Route>
         <Route path="/login">
-          <Login />
+          {!user ? <Login /> : <Redirect to="/user-feed" /> }
         </Route>
         <Route path="/signup">
           <Signup />
@@ -56,20 +54,15 @@ function Routing() {
           <UserProfile />
         </Route>
       </Switch>
-    </Router>
-    // </UserContext.Provider>
+   </>
   );
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
       <Router>
-        <Navbar />
         <Routing />
       </Router>
-    </UserContext.Provider>
   );
 }
 

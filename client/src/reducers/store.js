@@ -1,8 +1,15 @@
-export const initialState = null;
 
-export const reducer = (state, action) => {
+import { createStore } from "redux";
+
+const initialState = {
+    user: null
+};
+
+const reducer = (state = initialState, action) => {
   if (action.type === "USER") {
-    return action.payload;
+    console.log(`USER is updated!!`)
+    // console.log(action.payload)
+    return {...state, user: action.payload};
   }
   if (action.type === "CLEAR") {
     return null;
@@ -22,3 +29,5 @@ export const reducer = (state, action) => {
   }
   return state;
 };
+
+export const store = createStore(reducer);

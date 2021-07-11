@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import * as style from "./UserProfile.styles";
 import localization from "../localization.json";
 import Post from "./Post/Post";
-import {UserContext } from "../../App"
+import { useSelector } from "react-redux" 
 
 function UserProfile() {
-  const {state, dispatch} = useContext(UserContext)
-  const user = state
+  // const {state, dispatch} = useContext(UserContext)
+  // const user = state
+  const user = useSelector(state => state.user);
   const userProfileLocalization = localization.UserProfileComponent;
   let postList = [
     {
@@ -102,7 +103,7 @@ function UserProfile() {
         </style.HeaderContent>
         <style.PostContainer>
           {postList.map((post) => {
-            return <Post post={post} user={user} />;
+            return <Post key={`${post.caption}-${post.postedOn}`} post={post} user={user} />;
           })}
         </style.PostContainer>
       </style.ProfileContent>

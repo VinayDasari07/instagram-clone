@@ -15,15 +15,18 @@ import {
   ProfileImage,
   ProfileImageContainer,
 } from "./Navbar.style";
+import { useSelector } from "react-redux" 
 import { UserContext } from "../../App";
 
 export const Navbar = () => {
-  const { state, dispatch } = useContext(UserContext);
-  const user = state;
-  if (!user) {
-    return "";
-  }
-
+  const user = useSelector(state => state.user);
+  // const { state, dispatch } = useContext(UserContext);
+  // const user = state;
+  // // if (!user) {
+  // //   return "";
+  // // }
+  // console.log(`state, dispatch`)
+  // console.log(state, dispatch)
   return (
     <Nav>
       <NavContent>
