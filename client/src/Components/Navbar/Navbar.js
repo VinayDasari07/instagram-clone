@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Nav,
   NavContent,
@@ -13,13 +14,13 @@ import {
   HomeBTN,
   ProfileImage,
   ProfileImageContainer,
-  LogOutSpan,
 } from "./Navbar.style";
 
 export const Navbar = ({ user }) => {
   if (!user) {
     return "";
   }
+
   return (
     <Nav>
       <NavContent>
@@ -42,7 +43,6 @@ export const Navbar = ({ user }) => {
               <LinkToHome href="/">
                 <svg
                   aria-label="Home"
-                  class="_8-yf5 "
                   fill="#262626"
                   height="22"
                   viewBox="0 0 48 48"
@@ -53,7 +53,9 @@ export const Navbar = ({ user }) => {
               </LinkToHome>
             </HomeBTN>
             <ProfileImageContainer>
-              <ProfileImage src={user.ProfileImage}></ProfileImage>
+              <Link to="/user-profile">
+                <ProfileImage src={user.ProfileImage}></ProfileImage>
+              </Link>
             </ProfileImageContainer>
           </RightMenuContent>
         </RightMenus>

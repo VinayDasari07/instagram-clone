@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { axiosConfig } from ".//config-files/axios.config.js";
+import UserProfile from "./Components/UserProfile/UserProfile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,20 +21,23 @@ function App() {
   }
   return (
     <>
-      <Navbar user={user}></Navbar>
       <Router>
+        <Navbar user={user}></Navbar>
         <Switch>
           <Route exact path="/">
-            <Login user={user} />
+            <Login user={user} setUser={setUser} />
           </Route>
           <Route path="/login">
-            <Login user={user} />
+            <Login user={user} setUser={setUser} />
           </Route>
           <Route path="/signup">
             <Signup user={user} />
           </Route>
           <Route path="/user-feed">
             <Feed user={user} />
+          </Route>
+          <Route path="/user-profile">
+            <UserProfile user={user} />
           </Route>
         </Switch>
       </Router>

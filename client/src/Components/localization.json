@@ -19,5 +19,11 @@
         "instagram": "Instagram",
         "haveAccount": "Have an account?",
         "signUpInfoText": "Sign up to see photos and videos from your friends."
+    },
+    "UserProfileComponent": {
+        "editProfile": "Edit Profile",
+        "posts": " posts",
+        "follower": " follower",
+        "following": " following"
     }
 }

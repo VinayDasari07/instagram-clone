@@ -8,6 +8,9 @@ export const loginCheck = (req, res, next) => {
     return res.status(401).json({ error: "you must be logged in" });
   }
   const token = authorization.replace("Bearer ", "");
+  // UserDetailModel.find().then((userRef) => {
+  //   console.log(userRef);
+  // })
   jwt.verify(token, JWT_SECRET, (err, payload) => {
     if (err) {
       return res.status(401).json({ error: "you must be logged in" });
