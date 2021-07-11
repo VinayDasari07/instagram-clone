@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Nav,
   NavContent,
@@ -19,6 +20,7 @@ export const Navbar = ({ user }) => {
   if (!user) {
     return "";
   }
+
   return (
     <Nav>
       <NavContent>
@@ -51,7 +53,9 @@ export const Navbar = ({ user }) => {
               </LinkToHome>
             </HomeBTN>
             <ProfileImageContainer>
-              <ProfileImage src={user.ProfileImage}></ProfileImage>
+              <Link to="/user-profile">
+                <ProfileImage src={user.ProfileImage}></ProfileImage>
+              </Link>
             </ProfileImageContainer>
           </RightMenuContent>
         </RightMenus>
