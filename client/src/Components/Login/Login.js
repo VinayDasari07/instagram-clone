@@ -5,11 +5,11 @@ import localization from "../localization.json";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { axiosConfig } from "..//..//config-files/axios.config.js";
-import {UserContext } from "../../App"
+import { UserContext } from "../../App";
 
 export const Login = () => {
-  const {state, dispatch} = useContext(UserContext)
-  const user = state
+  const { state, dispatch } = useContext(UserContext);
+  const user = state;
   const loginLocalization = localization.LoginComponent;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +26,7 @@ export const Login = () => {
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         // dispatch(res.data.user);
-        dispatch({type:"USER",payload:res.data.user})
+        dispatch({ type: "USER", payload: res.data.user });
         setIsUserAdded(true);
       })
       .catch((err) => {

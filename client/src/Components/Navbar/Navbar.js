@@ -1,4 +1,4 @@
-import React,{ useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Nav,
@@ -15,11 +15,11 @@ import {
   ProfileImage,
   ProfileImageContainer,
 } from "./Navbar.style";
-import {UserContext } from "../../App"
+import { UserContext } from "../../App";
 
 export const Navbar = () => {
-  const {state,dispatch} = useContext(UserContext)
-  const user = state
+  const { state, dispatch } = useContext(UserContext);
+  const user = state;
   if (!user) {
     return "";
   }

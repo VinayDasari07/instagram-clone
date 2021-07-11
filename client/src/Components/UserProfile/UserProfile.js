@@ -8,7 +8,6 @@ function UserProfile() {
   const {state, dispatch} = useContext(UserContext)
   const user = state
   const userProfileLocalization = localization.UserProfileComponent;
-  // console.log(user);
   let postList = [
     {
       ImageUrl: "https://source.unsplash.com/user/erondu/282x282",

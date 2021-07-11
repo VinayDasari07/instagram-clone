@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import localization from "../localization.json";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { axiosConfig } from "..//..//config-files/axios.config.js";
+import { UserContext } from "../../App";
 
-function Signup({ user }) {
+function Signup() {
   const signUpLocalization = localization.SignUpComponent;
   const [isUserAdded, setIsUserAdded] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [name, setName] = useState("");
+  const { state, dispatch } = useContext(UserContext);
+  const user = state;
 
   const addUser = (e) => {
     e.preventDefault();
