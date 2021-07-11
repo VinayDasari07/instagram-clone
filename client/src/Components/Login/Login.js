@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import localization from "../localization.json";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { axiosConfig } from "..//..//config-files/axios.config.js";
+import {UserContext } from "../../App"
 
-export const Login = ({ user, setUser }) => {
+export const Login = () => {
+  const {state, dispatch} = useContext(UserContext)
+  const user = state
   const loginLocalization = localization.LoginComponent;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +25,8 @@ export const Login = ({ user, setUser }) => {
       .post("/api/login", { email, password }, axiosConfig)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        setUser(res.data.user);
+        // dispatch(res.data.user);
+        dispatch({type:"USER",payload:res.data.user})
         setIsUserAdded(true);
       })
       .catch((err) => {

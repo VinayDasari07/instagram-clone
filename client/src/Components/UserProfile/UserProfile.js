@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as style from "./UserProfile.styles";
 import localization from "../localization.json";
 import Post from "./Post/Post";
+import {UserContext } from "../../App"
 
-function UserProfile({ user }) {
+function UserProfile() {
+  const {state, dispatch} = useContext(UserContext)
+  const user = state
   const userProfileLocalization = localization.UserProfileComponent;
   // console.log(user);
   let postList = [
