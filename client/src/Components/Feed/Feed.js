@@ -16,7 +16,7 @@ export const Feed = () => {
   // console.log(state)
   return (
     <div>
-      <h1>Working feed on {user ? user.Name : ''}</h1>
+      <h1>Working feed on {user ? user.name : ''}</h1>
     </div>
   );
 };

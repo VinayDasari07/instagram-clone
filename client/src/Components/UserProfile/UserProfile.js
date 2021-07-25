@@ -49,6 +49,7 @@ function UserProfile() {
       postedOn: "20-7-2021",
     },
   ];
+  console.log(user);
   return (
     <div>
       <style.ProfileContent>
@@ -57,8 +58,8 @@ function UserProfile() {
             <style.ProfileImage
               alt="test"
               src={
-                user && user.ProfileImage
-                  ? user.ProfileImage
+                user && user.pic
+                  ? user.pic
                   : "https://source.unsplash.com/user/erondu/150x150"
               }
             ></style.ProfileImage>
@@ -66,7 +67,7 @@ function UserProfile() {
           <style.UserDataContainer>
             <style.UserNameSection>
               <style.UserNameSectionH2>
-                {user && user.UserName ? user.UserName : ""}
+                {user && user.username ? user.username : ""}
               </style.UserNameSectionH2>
               <style.UserNameSectionButton>
                 {userProfileLocalization.editProfile}
@@ -81,7 +82,7 @@ function UserProfile() {
               </style.UserFollowerSectionText>
               <style.UserFollowerSectionText>
                 <style.UserFollowerSectionNumber>
-                  {user && user.Followers && user.Followers.length
+                  {user && user.followers && user.followers.length
                     ? user.Followers.length
                     : 0}
                 </style.UserFollowerSectionNumber>
@@ -89,7 +90,7 @@ function UserProfile() {
               </style.UserFollowerSectionText>
               <style.UserFollowerSectionText>
                 <style.UserFollowerSectionNumber>
-                  {user && user.Following && user.Following.length
+                  {user && user.following && user.following.length
                     ? user.Following.length
                     : 0}
                 </style.UserFollowerSectionNumber>
@@ -97,7 +98,7 @@ function UserProfile() {
               </style.UserFollowerSectionText>
             </style.UserFollowerSection>
             <style.UserBioSection>
-              <p>{user && user.Bio ? user.Bio : "Bio"}</p>
+              <p>{user && user.bio ? user.bio : "Bio"}</p>
             </style.UserBioSection>
           </style.UserDataContainer>
         </style.HeaderContent>

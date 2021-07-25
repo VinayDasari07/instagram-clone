@@ -54,16 +54,27 @@ const loginController = async (req, res) => {
       }
       if (user.Password === password) {
         const token = jwt.sign({ _id: user._id }, JWT_SECRET);
-        const { _id, Name, EmailId, Followers, Following, ProfileImage } = user;
+        const {
+          _id,
+          Name,
+          UserName,
+          EmailId,
+          Followers,
+          Following,
+          ProfileImage,
+          Bio
+        } = user;
         res.status(200).json({
           token,
           user: {
             _id,
             name: Name,
+            username: UserName,
             email: EmailId,
             followers: Followers,
             following: Following,
             pic: ProfileImage,
+            bio: Bio
           },
         });
       } else {

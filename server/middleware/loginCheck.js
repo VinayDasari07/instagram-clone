@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { UserDetailModel } from "../models/UserDetailModel.js";
-import { JWT_SECRET } from '../constants/constants.js'
+import { JWT_SECRET } from "../constants/constants.js";
 
 export const loginCheck = (req, res, next) => {
   const { authorization } = req.headers;
@@ -18,7 +18,26 @@ export const loginCheck = (req, res, next) => {
 
     const { _id } = payload;
     UserDetailModel.findById(_id).then((userRef) => {
-      req.user = userRef;
+      const {
+        _id,
+        Name,
+        UserName,
+        EmailId,
+        Followers,
+        Following,
+        ProfileImage,
+        Bio,
+      } = userRef;
+      req.user = {
+        _id,
+        name: Name,
+        username: UserName,
+        email: EmailId,
+        followers: Followers,
+        following: Following,
+        pic: ProfileImage,
+        bio: Bio,
+      };
       next();
     });
   });
