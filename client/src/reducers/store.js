@@ -2,14 +2,12 @@
 import { createStore } from "redux";
 
 const initialState = {
-    user: null
+  user: null
 };
 
 const reducer = (state = initialState, action) => {
   if (action.type === "USER") {
-    console.log(`USER is updated!!`)
-    // console.log(action.payload)
-    return {...state, user: action.payload};
+    return { ...state, user: action.payload };
   }
   if (action.type === "CLEAR") {
     return null;

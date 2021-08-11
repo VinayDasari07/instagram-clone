@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
   Nav,
   NavContent,
@@ -15,10 +15,21 @@ import {
   ProfileImage,
   ProfileImageContainer,
 } from "./Navbar.style";
-import { useSelector } from "react-redux" 
+import { useSelector, useDispatch } from "react-redux"
+import { BsPower } from 'react-icons/bs'
 
 export const Navbar = () => {
   const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+
+  const removeTokenFromLocalStroage = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    dispatch({ type: "CLEAR" });
+    window.location.reload();
+  }
+
   return (
     <Nav>
       <NavContent>
@@ -54,6 +65,9 @@ export const Navbar = () => {
               <Link to="/user-profile">
                 <ProfileImage src={user.pic}></ProfileImage>
               </Link>
+            </ProfileImageContainer>
+            <ProfileImageContainer>
+              <BsPower onClick={(e) => { removeTokenFromLocalStroage(e) }} size="24" />
             </ProfileImageContainer>
           </RightMenuContent>
         </RightMenus>
