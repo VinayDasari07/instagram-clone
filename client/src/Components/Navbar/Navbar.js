@@ -14,9 +14,11 @@ import {
   HomeBTN,
   ProfileImage,
   ProfileImageContainer,
+  NavBarSearchIcon,
+  NavBarSearchContainer,
 } from "./Navbar.style";
 import { useSelector, useDispatch } from "react-redux"
-import { BsPower } from 'react-icons/bs'
+import { BsPower, BsSearch } from 'react-icons/bs'
 
 export const Navbar = () => {
   const user = useSelector(state => state.user);
@@ -41,10 +43,15 @@ export const Navbar = () => {
           </LinkToHome>
         </LogoText>
         <NavBarSearch>
-          <NavBarSearchInput
-            type="text"
-            placeholder="Search"
-          ></NavBarSearchInput>
+          <NavBarSearchContainer>
+            <NavBarSearchInput
+              type="text"
+              placeholder="Search"
+            ></NavBarSearchInput>
+          </NavBarSearchContainer>
+          <NavBarSearchIcon>
+            <BsSearch size="12"/>
+          </NavBarSearchIcon>
         </NavBarSearch>
         <RightMenus>
           <RightMenuContent>

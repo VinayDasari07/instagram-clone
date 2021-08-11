@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Nav = styled.nav`
   background-color: #fafafa;
@@ -64,7 +64,19 @@ export const NavBarSearch = styled.div`
   flex: 0 1 auto;
   min-width: 125px;
   width: 215px;
+  position: relative;
 `;
+
+export const NavBarSearchContainer = styled.div`
+  position: relative;
+`
+
+export const NavBarSearchIcon = styled.div`
+  position: absolute;
+  top: 1px;
+  left: 32%;
+  z-index: 3;
+`
 
 export const NavBarSearchInput = styled.input`
   font-size: 16px;
@@ -76,9 +88,15 @@ export const NavBarSearchInput = styled.input`
   padding: 3px 10px 3px 26px;
   z-index: 2;
   box-sizing: border-box;
-  height: 100%;
+  height: 28px;
   width: 100%;
   line-height: 18px;
+  text-align: center;
+  &:focus {
+    position: absolute;
+    text-align: left;
+    z-index: 5;
+  }
 `;
 
 export const RightMenus = styled.div`
