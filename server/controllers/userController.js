@@ -38,9 +38,6 @@ const signupController = async (req, res) => {
 };
 
 const loginController = async (req, res) => {
-  // await UserDetailModel.find().then((user) => {
-  //   console.log("user =>", user);
-  // })
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(422).json({ error: "Please add all the details. " });
@@ -53,7 +50,7 @@ const loginController = async (req, res) => {
           .json({ error: "user does not exists with that email or password" });
       }
       if (user.Password === password) {
-        const token = jwt.sign({ _id: user._id }, JWT_SECRET);
+        const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '5h'});
         const {
           _id,
           Name,
