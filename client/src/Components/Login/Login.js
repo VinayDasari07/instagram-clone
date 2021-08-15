@@ -1,20 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./Login.css";
-import { useSelector, useDispatch } from "react-redux" 
+import {  useDispatch } from "react-redux" 
 import { Link } from "react-router-dom";
 import localization from "../localization.json";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { axiosConfig } from "..//..//config-files/axios.config.js";
 
 export const Login = () => {
   
-  // const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const loginLocalization = localization.LoginComponent;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [isUserAdded, setIsUserAdded] = useState(false);
 
   const checkLogin = (e) => {
     e.preventDefault();
@@ -22,10 +19,6 @@ export const Login = () => {
       alert("Please enter email and password");
       return;
     }
-    // const result = await axios.post("/api/login", { email, password }, axiosConfig)
-    // const data = await result.data
-    // localStorage.setItem("token", data.token);
-    // dispatch({ type: "USER", payload: data.user });
 
     axios.post("/api/login", { email, password }, axiosConfig)
       .then((res) => {

@@ -27,6 +27,9 @@ export const loginCheck = (req, res, next) => {
         Following,
         ProfileImage,
         Bio,
+        Website,
+        Gender,
+        PhoneNumber
       } = userRef;
       req.user = {
         _id,
@@ -37,6 +40,9 @@ export const loginCheck = (req, res, next) => {
         following: Following,
         pic: ProfileImage,
         bio: Bio,
+        website: Website,
+        gender: Gender,
+        phoneNumber: PhoneNumber
       };
       next();
     });

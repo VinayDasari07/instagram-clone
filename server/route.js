@@ -3,6 +3,8 @@ import {
   signupController,
   loginController,
   currentUser,
+  editProfile,
+  changePassword,
 } from "./controllers/userController.js";
 import { loginCheck } from "./middleware/loginCheck.js";
 
@@ -17,6 +19,10 @@ router.post("/signup", signupController);
 
 // define the login route
 router.post("/login", loginController);
+
+router.post("/edit-profile", loginCheck, editProfile);
+
+router.post("/change-password", loginCheck, changePassword);
 
 router.get("/get-logged-in-user", loginCheck, currentUser);
 

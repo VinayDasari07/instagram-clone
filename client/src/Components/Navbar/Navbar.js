@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   Nav,
   NavContent,
@@ -17,20 +17,19 @@ import {
   NavBarSearchIcon,
   NavBarSearchContainer,
 } from "./Navbar.style";
-import { useSelector, useDispatch } from "react-redux"
-import { BsPower, BsSearch } from 'react-icons/bs'
+import { useSelector, useDispatch } from "react-redux";
+import { BsPower, BsSearch } from "react-icons/bs";
 
 export const Navbar = () => {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
 
   const removeTokenFromLocalStroage = (e) => {
     e.preventDefault();
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     dispatch({ type: "CLEAR" });
     window.location.reload();
-  }
+  };
 
   return (
     <Nav>
@@ -50,7 +49,7 @@ export const Navbar = () => {
             ></NavBarSearchInput>
           </NavBarSearchContainer>
           <NavBarSearchIcon>
-            <BsSearch size="12"/>
+            <BsSearch size="12" />
           </NavBarSearchIcon>
         </NavBarSearch>
         <RightMenus>
@@ -74,7 +73,12 @@ export const Navbar = () => {
               </Link>
             </ProfileImageContainer>
             <ProfileImageContainer>
-              <BsPower onClick={(e) => { removeTokenFromLocalStroage(e) }} size="24" />
+              <BsPower
+                onClick={(e) => {
+                  removeTokenFromLocalStroage(e);
+                }}
+                size="24"
+              />
             </ProfileImageContainer>
           </RightMenuContent>
         </RightMenus>

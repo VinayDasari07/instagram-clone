@@ -14,7 +14,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [name, setName] = useState("");
-  const { state, dispatch } = useContext(UserContext);
+  const { state } = useContext(UserContext);
   const user = state;
 
   const addUser = (e) => {

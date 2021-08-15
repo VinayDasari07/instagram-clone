@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { axiosConfig } from "../../../config-files/axios.config";
+import axios from "axios";
 import "./ChangePassword.css";
+
 
 export const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -16,6 +19,14 @@ export const ChangePassword = () => {
       newPassword,
     };
     console.log(changePasswordObj);
+    axios
+      .post("/api/change-password", changePasswordObj, axiosConfig)
+      .then((res) => {
+        alert("Done")
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

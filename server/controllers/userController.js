@@ -50,7 +50,9 @@ const loginController = async (req, res) => {
           .json({ error: "user does not exists with that email or password" });
       }
       if (user.Password === password) {
-        const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '5h'});
+        const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
+          expiresIn: "5h",
+        });
         const {
           _id,
           Name,
@@ -59,7 +61,10 @@ const loginController = async (req, res) => {
           Followers,
           Following,
           ProfileImage,
-          Bio
+          Bio,
+          Website,
+          Gender,
+          PhoneNumber,
         } = user;
         res.status(200).json({
           token,
@@ -71,7 +76,10 @@ const loginController = async (req, res) => {
             followers: Followers,
             following: Following,
             pic: ProfileImage,
-            bio: Bio
+            bio: Bio,
+            website: Website,
+            gender: Gender,
+            phoneNumber: PhoneNumber,
           },
         });
       } else {
@@ -87,4 +95,19 @@ const currentUser = async (req, res) => {
   res.status(200).json(req.user);
 };
 
-export { signupController, loginController, currentUser };
+const editProfile = async (req, res) => {
+  res.status(200).json(req.user);
+};
+
+const changePassword = async (req, res) => {
+  console.log(req.body, req.user);
+  res.status(200).json(req.user);
+};
+
+export {
+  signupController,
+  loginController,
+  currentUser,
+  editProfile,
+  changePassword,
+};
