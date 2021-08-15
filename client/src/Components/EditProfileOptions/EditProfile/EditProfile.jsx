@@ -1,7 +1,9 @@
 import React from "react";
 import "./EditProfile.css";
+import { useSelector } from "react-redux";
 
 export const EditProfile = () => {
+  const user = useSelector((state) => state.user);
   return (
     <div className="edit-profile">
       <div className="input-container">
@@ -9,13 +11,13 @@ export const EditProfile = () => {
           <label className="label" htmlFor="name">
             Name
           </label>
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" value={user.name}/>
         </div>
         <div className="username">
           <label className="label" htmlFor="username">
             Username
           </label>
-          <input type="text" name="username" id="username" />
+          <input type="text" name="username" id="username" value={user.username} />
         </div>
         <div className="website">
           <label className="label" htmlFor="website">
@@ -33,7 +35,7 @@ export const EditProfile = () => {
           <label className="label" htmlFor="email">
             Email
           </label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" value={user.email}/>
         </div>
         <div className="phone-number">
           <label className="label" htmlFor="phone-number">
