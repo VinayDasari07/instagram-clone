@@ -7,6 +7,7 @@ import "./EditProfileOptions.css";
 export const EditProfileOptions = () => {
   const [editProfile, setEditProfile] = useState(true);
   const user = useSelector((state) => state.user);
+  console.log(user);
   return (
     <div className="main">
       <div className="edit-profile-container">
