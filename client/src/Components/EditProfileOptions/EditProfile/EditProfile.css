@@ -1,0 +1,60 @@
+/* .edit-profile {
+  border-left: 0.6px solid rgba(219, 219, 219, 1);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
+.user-profile {
+  display: flex;
+  margin-top: 30px;
+}
+
+.user-profile .image-container {
+  margin: 2px 32px 0 124px;
+}
+
+.user-profile .image-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.user-profile .user-name p {
+  margin: 0;
+}
+.user-profile .user-name button {
+  margin-bottom: 20px;
+  border: 0;
+  color: #0095f6;
+}
+
+.label {
+  width: 196px;
+  text-align: right;
+  padding-right: 32px;
+  margin-bottom: 30px;
+}
+
+.input-container input,
+textarea {
+  width: 370px;
+  border: 0.6px solid rgba(219, 219, 219, 1);
+  border-radius: 8px;
+  padding-left: 20px;
+}
+
+.input-container input {
+  height: 35px;
+}
+
+.submit-btn {
+  width: fit-content;
+  padding: 2px 20px;
+  background-color: rgba(0, 149, 246, 1);
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 0;
+  margin: auto;
+  margin-bottom: 20px;
+}

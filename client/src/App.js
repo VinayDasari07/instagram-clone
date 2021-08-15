@@ -3,6 +3,7 @@ import { Login } from "./Components/Login/Login";
 import { Feed } from "./Components/Feed/Feed";
 import { Navbar } from "./Components/Navbar/Navbar";
 import Signup from "./Components/Signup/Signup";
+import { EditProfileOptions } from "./Components/EditProfileOptions/EditProfileOptions";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,10 +11,7 @@ import {
   useHistory,
   Redirect,
 } from "react-router-dom";
-import {
-  createContext,
-  useEffect,
-} from "react";
+import { createContext, useEffect } from "react";
 import axios from "axios";
 import { axiosConfig } from ".//config-files/axios.config.js";
 import UserProfile from "./Components/UserProfile/UserProfile";
@@ -22,7 +20,7 @@ export const UserContext = createContext();
 function Routing() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     axios
       .get("/api/get-logged-in-user", axiosConfig)
@@ -36,13 +34,13 @@ function Routing() {
 
   return (
     <>
-        {user ? <Navbar /> : '' }
+      {user ? <Navbar /> : ""}
       <Switch>
         <Route exact path="/">
-        {user ? <Feed /> : <Redirect to="/login" /> }
+          {user ? <Feed /> : <Redirect to="/login" />}
         </Route>
         <Route path="/login">
-          {!user ? <Login /> : <Redirect to="/user-feed" /> }
+          {!user ? <Login /> : <Redirect to="/user-feed" />}
         </Route>
         <Route path="/signup">
           <Signup />
@@ -53,16 +51,19 @@ function Routing() {
         <Route path="/user-profile">
           <UserProfile />
         </Route>
+        <Route path="/edit-profile">
+          <EditProfileOptions />
+        </Route>
       </Switch>
-   </>
+    </>
   );
 }
 
 function App() {
   return (
-      <Router>
-        <Routing />
-      </Router>
+    <Router>
+      <Routing />
+    </Router>
   );
 }
 

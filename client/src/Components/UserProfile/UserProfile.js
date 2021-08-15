@@ -2,12 +2,13 @@ import React from "react";
 import * as style from "./UserProfile.styles";
 import localization from "../localization.json";
 import Post from "./Post/Post";
-import { useSelector } from "react-redux" 
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function UserProfile() {
   // const {state, dispatch} = useContext(UserContext)
   // const user = state
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const userProfileLocalization = localization.UserProfileComponent;
   let postList = [
     {
@@ -69,9 +70,11 @@ function UserProfile() {
               <style.UserNameSectionH2>
                 {user && user.username ? user.username : ""}
               </style.UserNameSectionH2>
-              <style.UserNameSectionButton>
-                {userProfileLocalization.editProfile}
-              </style.UserNameSectionButton>
+              <Link to="edit-profile">
+                <style.UserNameSectionButton>
+                  {userProfileLocalization.editProfile}
+                </style.UserNameSectionButton>
+              </Link>
             </style.UserNameSection>
             <style.UserFollowerSection>
               <style.UserFollowerSectionText>
@@ -104,7 +107,13 @@ function UserProfile() {
         </style.HeaderContent>
         <style.PostContainer>
           {postList.map((post) => {
-            return <Post key={`${post.caption}-${post.postedOn}`} post={post} user={user} />;
+            return (
+              <Post
+                key={`${post.caption}-${post.postedOn}`}
+                post={post}
+                user={user}
+              />
+            );
           })}
         </style.PostContainer>
       </style.ProfileContent>

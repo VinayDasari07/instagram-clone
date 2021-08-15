@@ -1,0 +1,51 @@
+.main {
+  margin: 30px 20% 0;
+  border: 0.6px solid rgba(219, 219, 219, 1);
+  width: 930px;
+}
+
+.edit-profile-container {
+  display: flex;
+}
+
+.edit-profile-container .options {
+  width: 270px;
+  height: 100%;
+  padding: 20px 0 0 20px;
+  border-left: 0.6px solid rgba(219, 219, 219, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.edit-profile-active:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  height: 45px;
+  border-left: 3px solid black;
+}
+
+.edit-profile-active {
+  font-weight: bold;
+}
+
+.change-password-active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  height: 45px;
+  border-left: 3px solid black;
+}
+
+.change-password-active {
+  font-weight: bold;
+}
+
+.edit-container {
+  border-left: 0.6px solid rgba(219, 219, 219, 1);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
